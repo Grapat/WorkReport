@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "image_url": "/images/supervision-1.jpg",
+        "caption": "อาจารย์นิเทศให้คำแนะนำหลังการสาธิตการสอน"
+    },
+    {
+        "id": 2,
+        "image_url": "/images/supervision-2.jpg",
+        "caption": "บรรยากาศนักเรียนทำกิจกรรมกลุ่มอย่างสนุกสนาน"
+    },
+    {
+        "id": 3,
+        "image_url": "/images/supervision-3.jpg",
+        "caption": "การนำเสนอผลงานของนักเรียนหน้าชั้นเรียน"
+    }
+]
