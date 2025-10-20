@@ -9,26 +9,32 @@ import Gallery from './Gallery';
 
 // --- Main HomePage Component ---
 
+
 function HomePage() {
   return (
     <div className="homepage-container">
-      <h1 className="homepage-title">Jirapat's internship Dashboard</h1>
+      <h1 className="homepage-title">Jirapat's Internship Dashboard</h1>
       <main className="main-grid">
         <div className="left-column">
           <section className="card todolist-card">
             <h2>Todo List</h2>
             <TodoList />
           </section>
-          <section className="card workplace-card">
-            <h2>Work Place Info</h2>
-            <WorkPlaceInfo />
-          </section>
+
+          <Link to="/workplace" className="card-link">
+            <section className="card workplace-card card-interactive">
+              <h2>Work Place Info</h2>
+              <WorkPlaceInfo />
+            </section>
+          </Link>
         </div>
         <div className="right-column">
-          <section className="card calendar-card">
-            <h2>Calendar</h2>
-            <Calendar />
-          </section>
+          <Link to="/calendar" className="card-link">
+            <section className="card calendar-card card-interactive">
+              <h2>Calendar</h2>
+              <Calendar />
+            </section>
+          </Link>
           <section className="card gallery-card">
             <h2>Gallery</h2>
             <Gallery />

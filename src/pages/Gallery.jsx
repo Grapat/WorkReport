@@ -5,10 +5,10 @@ import '../css/Gallery.css';
 
 // Supervision data is kept inside the component for simplicity
 const supervisionData = [
-    { "id": 1, "image_url": "https://placehold.co/600x400/1e293b/94a3b8?text=Supervision+1", "caption": "อาจารย์นิเทศให้คำแนะนำ" },
-    { "id": 2, "image_url": "https://placehold.co/600x400/1e293b/94a3b8?text=Supervision+2", "caption": "บรรยากาศในชั้นเรียน" },
-    { "id": 3, "image_url": "https://placehold.co/600x400/1e293b/94a3b8?text=Supervision+3", "caption": "การนำเสนอผลงาน" },
-    { "id": 4, "image_url": "https://placehold.co/600x400/1e293b/94a3b8?text=Supervision+4", "caption": "กิจกรรมกลุ่ม" }
+    { "id": 1, "image_url": "/pic/1.jpg", "caption": "รูปที่1" },
+    { "id": 2, "image_url": "/pic/2.jpg", "caption": "รูปที่2" },
+    { "id": 3, "image_url": "/pic/3.jpg", "caption": "รูปที่3" },
+    { "id": 4, "image_url": "/pic/4.jpg", "caption": "รูปที่4" }
 ];
 
 function Gallery() {
