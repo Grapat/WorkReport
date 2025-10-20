@@ -1,0 +1,111 @@
+/* --- สไตล์สำหรับหน้าปฏิทินโดยรวม --- */
+.calendar-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-6);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-family: var(--font-primary);
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: var(--spacing-4);
+    font-size: var(--text-md);
+}
+
+.calendar-page-header {
+    margin-bottom: var(--spacing-6);
+}
+
+.calendar-page-header h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+}
+
+.calendar-page-header p {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+}
+
+/* --- สไตล์สำหรับปฏิทินที่เลื่อนได้ --- */
+.calendar-wrapper-simple {
+    background-color: var(--color-surface);
+    padding: var(--spacing-6);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+}
+
+/* --- ส่วนควบคุมการเลื่อนเดือน --- */
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-4);
+    padding: 0 var(--spacing-2);
+}
+
+.nav-button {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius);
+    font-size: var(--text-lg);
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    border-color: var(--color-accent);
+}
+
+.current-month {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+/* --- ตารางปฏิทิน --- */
+.simple-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--spacing-2);
+    text-align: center;
+}
+
+.calendar-header {
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    padding-bottom: var(--spacing-2);
+}
+
+.calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2);
+    border-radius: var(--radius);
+    font-size: var(--text-md);
+    min-height: 40px;
+}
+
+/* วันที่ว่างเปล่า */
+.calendar-day.blank {
+    background-color: transparent;
+}
+
+/* วันที่ปัจจุบัน */
+.calendar-day.today {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    font-weight: bold;
+}
