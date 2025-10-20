@@ -1,6 +1,51 @@
-/* Make sure these 3 lines are at the top of this file
-  and that all other default Vite styles are removed.
-*/
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* --- 1. Import Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=BBH+Sans+Bogle&display=swap');
+
+/* --- 2. CSS Variables (Preset) --- */
+:root {
+    /* Fonts */
+    --font-primary: "Noto Sans Thai", sans-serif;
+    --font-display: "BBH Sans Bogle", sans-serif;
+
+    /* Colors */
+    --color-background: #111827;
+    /* Dark Blue/Gray */
+    --color-surface: #1F2937;
+    /* Lighter Dark Blue/Gray */
+    --color-border: #374151;
+    --color-accent: #38bdf8;
+    /* Sky Blue */
+
+    --color-text-primary: #F9FAFB;
+    /* Almost White */
+    --color-text-secondary: #9CA3AF;
+    /* Gray */
+
+    /* Spacing & Sizing */
+    --spacing-1: 0.25rem;
+    --spacing-4: 1rem;
+    --spacing-6: 1.5rem;
+    --text-sm: 0.875rem;
+    --text-md: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-3xl: 1.875rem;
+    --radius: 0.5rem;
+}
+
+/* --- 3. Global Styles --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+}

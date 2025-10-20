@@ -1,6 +1,9 @@
 import React from 'react';
 
-// School data is now inside the component
+// 1. Import the new CSS file
+import '../css/WorkPlaceInfo.css';
+
+// School data remains inside the component
 const schoolData = {
   "school_name": "โรงเรียนวิทยานุสรณ์",
   "address": "123 สุขุมวิท, กรุงเทพฯ",
@@ -9,10 +12,20 @@ const schoolData = {
 
 function WorkPlaceInfo() {
   return (
-    <div className="space-y-2 text-slate-300 text-sm">
-      <p><strong>School:</strong> {schoolData.school_name}</p>
-      <p><strong>Address:</strong> {schoolData.address}</p>
-      <p><strong>Phone:</strong> {schoolData.phone_number}</p>
+    // 2. Use the new class names from the CSS file
+    <div className="info-container">
+      <div className="info-item">
+        <span className="info-label">School:</span>
+        <span className="info-value">{schoolData.school_name}</span>
+      </div>
+      <div className="info-item">
+        <span className="info-label">Address:</span>
+        <span className="info-value">{schoolData.address}</span>
+      </div>
+      <div className="info-item">
+        <span className="info-label">Phone:</span>
+        <span className="info-value">{schoolData.phone_number}</span>
+      </div>
     </div>
   );
 }
