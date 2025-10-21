@@ -17,7 +17,6 @@
     align-items: center;
     justify-content: center;
     padding: var(--spacing-2);
-    border-radius: 9999px;
     /* fully rounded */
     transition: background-color 0.2s;
     color: var(--color-text-primary);
@@ -27,8 +26,151 @@
     background-color: var(--color-surface-secondary);
 }
 
-.calendar-day.today {
-    background-color: var(--color-accent);
-    color: var(--color-background);
+/* --- เพิ่มสไตล์เหล่านี้ลงใน Calendar.css --- */
+
+/* Layout สำหรับช่องวัน (เหมือน FullCalendar) */
+.calendar-day {
+    position: relative;
+    padding-top: 24px;
+    min-height: 80px;
+    /* อาจจะเล็กกว่า FullCalendar ได้ */
+    color: #333;
+    /* (สำคัญ) ทำให้คลิกไม่ได้ */
+    cursor: default;
+}
+
+.calendar-day.blank {
+    background-color: transparent;
+    border: none;
+}
+
+.day-number {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    font-size: 0.8em;
     font-weight: bold;
+}
+
+/* สไตล์สำหรับ Event */
+.event-tag {
+    text-align: center;
+    font-size: 0.7em;
+    /* ทำให้เล็กหน่อย */
+    padding: 1px 4px;
+    border-radius: 4px;
+    background-color: #0ea5e9;
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0 2px;
+    /* ป้องกันข้อความยาวเกิน */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ไฮไลท์วันปัจจุบัน (จากไฟล์เดิมของคุณ) */
+.calendar-day.today {
+    background-color: #f0f9ff;
+    /* สีฟ้าอ่อน */
+    border-color: #0ea5e9;
+}
+
+.calendar-day.today .day-number {
+    color: #0c4a6e;
+}
+
+
+/* --- สีสำหรับสถานะ (เหมือน FullCalendar) --- */
+
+.calendar-day.status-present-bg {
+    background-color: #dcfce7;
+    /* green-100 */
+    border-color: #22c55e;
+    /* green-500 */
+}
+
+.calendar-day.status-present-bg .day-number {
+    color: #166534;
+    /* green-800 */
+}
+
+.calendar-day.status-absent-bg {
+    background-color: #fee2e2;
+    /* red-100 */
+    border-color: #ef4444;
+    /* red-500 */
+}
+
+.calendar-day.status-absent-bg .day-number {
+    color: #991b1b;
+    /* red-800 */
+}
+
+/* --- อัปเดต/เพิ่ม สไตล์เหล่านี้ใน Calendar.css --- */
+
+/* ลบ .calendar-day.today เก่าทิ้ง (ถ้ามี)
+  และลบ .calendar-day.today .day-number เก่าทิ้ง
+*/
+
+/* (ใหม่) สไตล์สำหรับช่องวันปัจจุบัน */
+.calendar-day.today {
+    /* เพิ่ม padding-top เพื่อให้มีที่สำหรับวงกลม */
+    padding-top: 30px;
+
+    /* (ทางเลือก) ยังคงมีขอบสีฟ้าจางๆ ได้ */
+    border-color: #0ea5e9;
+    background-color: #f0f9ff;
+    /* สีฟ้าอ่อน */
+}
+
+/* (ใหม่) สไตล์สำหรับ "ตัวเลข" ของวันปัจจุบัน */
+.calendar-day.today .day-number {
+    /* 1. ทำให้เป็นวงกลม */
+    background-color: #0ea5e9;
+    /* สีฟ้า */
+    color: #ffffff;
+    /* ตัวหนังสือสีขาว */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+
+    /* 2. จัดตัวเลขให้อยู่กลางวงกลม */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 3. จัดตำแหน่งวงกลมให้อยู่กลางบนของช่อง */
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* จัดกึ่งกลางแนวนอน */
+}
+
+/* (ใหม่) ทำให้วงกลมแสดงทับสีเขียว/แดง */
+/* ในกรณีที่วันปัจจุบัน ถูกเช็คชื่อด้วย */
+.calendar-day.status-present-bg.today .day-number,
+.calendar-day.status-absent-bg.today .day-number {
+    background-color: #0284c7;
+    /* สีฟ้าเข้มขึ้น */
+    color: #ffffff;
+}
+
+/* (ปรับปรุง) เพิ่มที่ว่างให้ event tag ไม่ชนวงกลม */
+.event-tag {
+    margin-top: 4px;
+    /* เพิ่ม margin ด้านบนเล็กน้อย */
+    /* ... (สไตล์ .event-tag อื่นๆ เหมือนเดิม) ... */
+    text-align: center;
+    font-size: 0.7em;
+    padding: 1px 4px;
+    border-radius: 4px;
+    background-color: #0ea5e9;
+    color: #ffffff;
+    font-weight: 600;
+    margin: 4px 2px 0 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -21,7 +21,7 @@ function WorkPlaceDetail() {
         <div className="wpd-image-container">
           {/* คุณสามารถเปลี่ยนรูปนี้เป็นรูปจริงของ กฟผ. ได้ */}
           <img
-            src="https://placehold.co/1200x400/1e293b/38bdf8?text=EGAT"
+            src="/pic/pp.jpg"
             alt="EGAT Headquarters"
             className="wpd-hero-image"
           />

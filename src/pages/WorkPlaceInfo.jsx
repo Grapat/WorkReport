@@ -5,9 +5,8 @@ import '../css/WorkPlaceInfo.css';
 
 // School data remains inside the component
 const schoolData = {
-  "school_name": "โรงเรียนวิทยานุสรณ์",
-  "address": "123 สุขุมวิท, กรุงเทพฯ",
-  "phone_number": "02-123-4567"
+  "school_name": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย (กฟผ.)",
+  "address": "53 หมู่ 2 ถนนจรัญสนิทวงศ์ อ.บางกรวย จ.นนทบุรี 11130"
 };
 
 function WorkPlaceInfo() {
@@ -21,10 +20,6 @@ function WorkPlaceInfo() {
       <div className="info-item">
         <span className="info-label">Address:</span>
         <span className="info-value">{schoolData.address}</span>
-      </div>
-      <div className="info-item">
-        <span className="info-label">Phone:</span>
-        <span className="info-value">{schoolData.phone_number}</span>
       </div>
     </div>
   );
