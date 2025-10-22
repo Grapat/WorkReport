@@ -1,10 +1,37 @@
-/* Container for the entire list */
+.todolist-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* ทำให้เต็ม Card */
+}
+
 .todo-list-container {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-4);
     overflow-y: auto;
     padding-right: var(--spacing-1);
+    flex-grow: 1;
+    /* (สำคัญ) ทำให้ขยายและดันปุ่มไปข้างล่าง */
+}
+
+.todo-list-container::-webkit-scrollbar {
+    width: 8px;
+    /* ความกว้างของ scrollbar */
+}
+
+/* 2. ตัว Track (รางที่ Scrollbar วิ่ง) */
+.todo-list-container::-webkit-scrollbar-track {
+    background-color: var(--color-surface);
+    /* สีพื้นหลังของราง */
+}
+
+/* 3. ตัว Thumb (แท่ง Scrollbar ที่เราลาก) */
+.todo-list-container::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent);
+    /* สีของแท่ง (สีฟ้า) */
+    border-radius: var(--radius);
+    /* ทำให้ขอบมน */
 }
 
 /* Styles for a single todo item */
@@ -53,32 +80,11 @@
     /* Makes the text gray */
 }
 
-/* --- เพิ่ม CSS เหล่านี้ลงในไฟล์ TodoList.css --- */
-
-/* (ใหม่) Wrapper เพื่อจัดวางปุ่ม "ดูทั้งหมด" */
-.todolist-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    /* ทำให้เต็ม Card */
-}
-
-/* (อัปเดต) ให้ container นี้ขยายเต็มที่ */
-.todo-list-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-4);
-    overflow-y: auto;
-    padding-right: var(--spacing-1);
-    flex-grow: 1;
-    /* (สำคัญ) ทำให้ขยายและดันปุ่มไปข้างล่าง */
-}
-
 /* (ใหม่) สไตล์สำหรับปุ่ม "ดูทั้งหมด" */
 .view-all-link {
     display: block;
     text-align: center;
-    padding: var(--spacing-3) 0 0 0;
+    padding-top: var(--spacing-2);
     color: var(--color-accent);
     text-decoration: none;
     transition: opacity 0.2s;

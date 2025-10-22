@@ -3,7 +3,8 @@
     grid-template-columns: repeat(7, 1fr);
     gap: var(--spacing-2);
     text-align: center;
-    height: 100%;
+    flex-grow: 1;
+    grid-template-rows: auto repeat(6, 1fr);
 }
 
 .calendar-header {
@@ -13,30 +14,16 @@
 }
 
 .calendar-day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-2);
-    /* fully rounded */
-    transition: background-color 0.2s;
-    color: var(--color-text-primary);
+    position: relative;
+    padding-top: 24px;
+    height: 100%;
+    color: #333;
+    cursor: default;
+    box-sizing: border-box;
 }
 
 .calendar-day:hover {
     background-color: var(--color-surface-secondary);
-}
-
-/* --- เพิ่มสไตล์เหล่านี้ลงใน Calendar.css --- */
-
-/* Layout สำหรับช่องวัน (เหมือน FullCalendar) */
-.calendar-day {
-    position: relative;
-    padding-top: 24px;
-    min-height: 80px;
-    /* อาจจะเล็กกว่า FullCalendar ได้ */
-    color: #333;
-    /* (สำคัญ) ทำให้คลิกไม่ได้ */
-    cursor: default;
 }
 
 .calendar-day.blank {
@@ -52,23 +39,22 @@
     font-weight: bold;
 }
 
-/* สไตล์สำหรับ Event */
 .event-tag {
-    text-align: center;
-    font-size: 0.7em;
-    /* ทำให้เล็กหน่อย */
-    padding: 1px 4px;
+    /* --- 3 บรรทัดสำคัญสำหรับตัดข้อความ --- */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    width: 90%;
+    margin: 4px auto 0 auto;
+    padding: 4px;
     border-radius: 4px;
     background-color: #0ea5e9;
     color: #ffffff;
     font-weight: 600;
-    margin: 0 2px;
-    /* ป้องกันข้อความยาวเกิน */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 0.7em;
+    text-align: center;
 }
-
 
 /* --- สีสำหรับสถานะ (เหมือน FullCalendar) --- */
 
@@ -104,31 +90,10 @@
     /* red-800 */
 }
 
-/* (ปรับปรุง) เพิ่มที่ว่างให้ event tag ไม่ชนวงกลม */
-.event-tag {
-    margin-top: 4px;
-    /* เพิ่ม margin ด้านบนเล็กน้อย */
-    /* ... (สไตล์ .event-tag อื่นๆ เหมือนเดิม) ... */
-    text-align: center;
-    font-size: 0.7em;
-    padding: 1px 4px;
-    border-radius: 4px;
-    background-color: #0ea5e9;
-    color: #ffffff;
-    font-weight: 600;
-    margin: 4px 2px 0 2px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-/* --- เพิ่ม CSS เหล่านี้ลงใน Calendar.css --- */
-
 .mini-calendar-wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* ทำให้เต็มพื้นที่ที่ HomePage กำหนด */
 }
 
 .mini-calendar-nav {
@@ -165,10 +130,4 @@
 .mini-nav-button:hover {
     background-color: #334155;
     /* สีพื้นหลังเข้มขึ้น */
-}
-
-/* (อัปเดต) ทำให้ Grid กินพื้นที่ที่เหลือ */
-.simple-calendar-grid {
-    flex-grow: 1;
-    /* ทำให้ตารางขยายเต็มพื้นที่ที่เหลือ */
 }

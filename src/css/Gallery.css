@@ -1,22 +1,31 @@
+/* --- Main Container ---
+ * ตัวหุ้มหลัก, บังคับให้ scrollbar อยู่ข้างใน
+ */
 .gallery-container {
     height: 100%;
     overflow: hidden;
 }
 
+/* --- Scrolling Area ---
+ * ตัว div ที่เลื่อนได้
+ */
 .gallery-scroller {
     display: grid;
     grid-template-columns: 1fr;
-    /* This is the line that fixes the overlap */
+    /* 1 คอลัมน์ */
     gap: var(--spacing-6);
-
+    /* ระยะห่างระหว่างรูป */
     height: 100%;
     overflow-y: auto;
+    /* เลื่อนแนวตั้ง */
     overflow-x: hidden;
+    /* ปิดเลื่อนแนวนอน */
     padding: 0 0 var(--spacing-4) 0;
     scrollbar-width: thin;
     scrollbar-color: var(--color-accent) var(--color-surface);
 }
 
+/* --- Scrollbar Styles --- */
 .gallery-scroller::-webkit-scrollbar {
     width: 8px;
 }
@@ -30,16 +39,24 @@
     background-color: var(--color-surface);
 }
 
-/* Each individual image container. */
+/* --- Image Item ---
+ * กล่องสี่เหลี่ยมสำหรับรูปแต่ละรูป
+ */
 .gallery-item {
     width: 100%;
-    max-height: 100%;
+    height: 250px;
+    /* กำหนดความสูงคงที่ */
     border-radius: var(--radius);
     overflow: hidden;
 }
 
-/* The image itself */
+/* --- The Image ---
+ * ตัวรูปภาพเอง
+ */
 .gallery-image {
     width: 100%;
+    height: 100%;
+    /* ยืดเต็มกล่อง .gallery-item */
     object-fit: cover;
+    /* ป้องกันรูปบิดเบี้ยว */
 }
