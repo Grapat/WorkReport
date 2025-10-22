@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-// 1. Import the CSS file
+import { Link } from 'react-router-dom';
 import '../css/Calendar.css';
 
 // URL ของ API เซิร์ฟเวอร์ (ตัวเดียวกับที่ FullCalendar.jsx ใช้)
 const API_URL = 'http://localhost:3001';
+// (ใหม่) กำหนดช่วงเวลา (เหมือน FullCalendar)
+const INTERNSHIP_START = new Date('2025-05-01');
+const INTERNSHIP_END = new Date('2026-03-01');
 
 // ปรับปรุงคอมโพเนนต์ให้ดึงข้อมูล
 function Calendar() {
@@ -12,23 +15,41 @@ function Calendar() {
     const [specialEvents, setSpecialEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    // --- คำนวณวันใน "เดือนปัจจุบัน" ---
+    // --- State สำหรับควบคุมเดือนที่แสดงผล ---
+    // เริ่มต้นที่เดือนปัจจุบัน
+    const [currentDate, setCurrentDate] = useState(new Date());
+
+    // --- (ใหม่) ฟังก์ชันสำหรับเลื่อนเดือน ---
+    const handlePrevMonth = () => {
+        const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+        if (prevMonth < INTERNSHIP_START) return;
+        setCurrentDate(prevMonth);
+    };
+
+    const handleNextMonth = () => {
+        const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+        if (nextMonth > INTERNSHIP_END) return;
+        setCurrentDate(nextMonth);
+    };
+    // --- สิ้นสุดฟังก์ชันเลื่อนเดือน ---
+
+
+    // --- (อัปเดต) คำนวณวันโดยอิงจาก State `currentDate` ---
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth(); // 0 = Jan, 1 = Feb, ...
+    const monthName = currentDate.toLocaleString('th-TH', { month: 'short', year: 'numeric' }); // 'short'
+
+    // หาข้อมูลของ "วันนี้" (สำหรับไฮไลท์)
     const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth(); // 0 = Jan, 1 = Feb, ...
-    const todayDateNum = today.getDate(); // วันที่ของวันนี้ (เช่น 21)
+    const todayDateNum = (today.getFullYear() === year && today.getMonth() === month) ? today.getDate() : 0;
 
-    // หาว่าวันแรกของเดือนคือวันอะไร (0 = Sun, 1 = Mon, ...)
     const firstDayOfMonth = new Date(year, month, 1).getDay();
-    // หาว่าเดือนนี้มีกี่วัน
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    // สร้าง array สำหรับช่องว่างหน้าปฏิทิน และ array สำหรับวัน
     const blanks = Array(firstDayOfMonth).fill(null);
     const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
     // --- สิ้นสุดการคำนวณวัน ---
 
-    // ดึงข้อมูลจากเซิร์ฟเวอร์เมื่อคอมโพเนนต์โหลด
+    // ดึงข้อมูลจากเซิร์ฟเวอร์ (เหมือนเดิม)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -43,58 +64,57 @@ function Calendar() {
             }
         };
         fetchData();
-    }, []); // `[]` หมายถึงให้ทำงานแค่ครั้งเดียวตอนโหลด
+    }, []);
 
-    // (ทางเลือก) แสดงผลว่ากำลังโหลด
     if (isLoading) {
         return <div className="simple-calendar-grid">Loading...</div>;
     }
 
     return (
-        <div className="simple-calendar-grid">
-            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                <div key={day} className="calendar-header">{day}</div>
-            ))}
+        // (ใหม่) ห่อทั้งหมดด้วย div เพื่อให้ปุ่มอยู่ถูกที่
+        <div className="mini-calendar-wrapper">
+            <div className="mini-calendar-nav">
+                <button onClick={handlePrevMonth} className="mini-nav-button">&lt;</button>
+                <h3 className="mini-current-month">{monthName}</h3>
+                <button onClick={handleNextMonth} className="mini-nav-button">&gt;</button>
+            </div>
+            <Link to="/Calendar" className="card-link">
+                <div className="simple-calendar-grid">
+                    {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                        <div key={day} className="calendar-header">{day}</div>
+                    ))}
 
-            {/* แสดงช่องว่าง */}
-            {blanks.map((_, index) => <div key={`blank-${index}`} className="calendar-day blank"></div>)}
+                    {blanks.map((_, index) => <div key={`blank-${index}`} className="calendar-day blank"></div>)}
 
-            {/* --- อัปเดตการแสดงผลวัน --- */}
-            {days.map(day => {
-                // สร้าง dateString (YYYY-MM-DD)
-                const dayString = String(day).padStart(2, '0');
-                const monthString = String(month + 1).padStart(2, '0');
-                const dateString = `${year}-${monthString}-${dayString}`;
+                    {/* --- อัปเดตการแสดงผลวัน (เหมือนเดิม) --- */}
+                    {days.map(day => {
+                        const dayString = String(day).padStart(2, '0');
+                        const monthString = String(month + 1).padStart(2, '0');
+                        const dateString = `${year}-${monthString}-${dayString}`;
+                        const event = specialEvents.find(e => e.date === dateString);
+                        const status = attendance[dateString];
 
-                // ค้นหาข้อมูล
-                const event = specialEvents.find(e => e.date === dateString);
-                const status = attendance[dateString];
+                        let dayClasses = "calendar-day";
+                        if (day === todayDateNum) { // เช็คกับ todayDateNum ที่คำนวณใหม่
+                            dayClasses += " today";
+                        }
+                        if (status === 'present') {
+                            dayClasses += " status-present-bg";
+                        } else if (status === 'absent') {
+                            dayClasses += " status-absent-bg";
+                        }
 
-                // สร้าง CSS class แบบไดนามิก
-                let dayClasses = "calendar-day";
-                if (day === todayDateNum) {
-                    dayClasses += " today"; // ไฮไลท์วันปัจจุบัน
-                }
-                if (status === 'present') {
-                    dayClasses += " status-present-bg";
-                } else if (status === 'absent') {
-                    dayClasses += " status-absent-bg";
-                }
-
-                return (
-                    <div
-                        key={day}
-                        className={dayClasses}
-                    // --- ไม่ต้องใส่ onClick ที่นี่เพื่อให้ "Read-only" ---
-                    >
-                        <span className="day-number">{day}</span>
-                        {event && (
-                            // (ทางเลือก) อาจใช้ event-tag-mini ถ้าอยากให้เล็กกว่า
-                            <div className="event-tag">{event.title}</div>
-                        )}
-                    </div>
-                );
-            })}
+                        return (
+                            <div key={day} className={dayClasses}>
+                                <span className="day-number">{day}</span>
+                                {event && (
+                                    <div className="event-tag">{event.title}</div>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            </Link>
         </div>
     );
 }

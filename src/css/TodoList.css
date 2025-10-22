@@ -3,9 +3,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-4);
-    /* Creates space between items */
     overflow-y: auto;
-    /* Adds a scrollbar if the list is too long */
     padding-right: var(--spacing-1);
 }
 
@@ -53,4 +51,40 @@
     text-decoration: line-through;
     color: var(--color-text-secondary);
     /* Makes the text gray */
+}
+
+/* --- เพิ่ม CSS เหล่านี้ลงในไฟล์ TodoList.css --- */
+
+/* (ใหม่) Wrapper เพื่อจัดวางปุ่ม "ดูทั้งหมด" */
+.todolist-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* ทำให้เต็ม Card */
+}
+
+/* (อัปเดต) ให้ container นี้ขยายเต็มที่ */
+.todo-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    overflow-y: auto;
+    padding-right: var(--spacing-1);
+    flex-grow: 1;
+    /* (สำคัญ) ทำให้ขยายและดันปุ่มไปข้างล่าง */
+}
+
+/* (ใหม่) สไตล์สำหรับปุ่ม "ดูทั้งหมด" */
+.view-all-link {
+    display: block;
+    text-align: center;
+    padding: var(--spacing-3) 0 0 0;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+    min-height: 60px;
+}
+
+.view-all-link:hover {
+    opacity: 0.8;
 }

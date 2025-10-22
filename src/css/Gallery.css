@@ -1,32 +1,24 @@
-/* This is the main container that holds the scrolling area.
-  'overflow-hidden' prevents the scrollbar from being visible 
-  outside this container's boundaries.
-*/
 .gallery-container {
     height: 100%;
     overflow: hidden;
 }
 
-/* This is the div that actually scrolls.
-  'display: flex' lays out the images side-by-side.
-  'overflow-x: auto' creates the horizontal scrollbar when needed.
-  'padding-bottom' gives some space below the images so the scrollbar doesn't touch them.
-*/
 .gallery-scroller {
-    display: flex;
-    gap: var(--spacing-4);
-    /* Space between each image */
+    display: grid;
+    grid-template-columns: 1fr;
+    /* This is the line that fixes the overlap */
+    gap: var(--spacing-6);
+
     height: 100%;
-    overflow-x: auto;
-    padding-bottom: var(--spacing-4);
-    /* This makes the scrollbar look better on browsers that support it */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 0 var(--spacing-4) 0;
     scrollbar-width: thin;
     scrollbar-color: var(--color-accent) var(--color-surface);
 }
 
-/* Hides the scrollbar but keeps it scrollable for Chrome/Safari */
 .gallery-scroller::-webkit-scrollbar {
-    height: 8px;
+    width: 8px;
 }
 
 .gallery-scroller::-webkit-scrollbar-thumb {
@@ -38,33 +30,16 @@
     background-color: var(--color-surface);
 }
 
-
-/* Each individual image container.
-  'flex-shrink: 0' is important! It tells the item not to shrink,
-  ensuring it keeps its defined width inside the flex container.
-*/
+/* Each individual image container. */
 .gallery-item {
-    flex-shrink: 0;
-    width: 66.66%;
-    /* Corresponds to Tailwind's w-2/3 */
-    height: 100%;
+    width: 100%;
+    max-height: 100%;
     border-radius: var(--radius);
     overflow: hidden;
-    /* Ensures the image respects the border-radius */
 }
 
 /* The image itself */
 .gallery-image {
     width: 100%;
-    height: 100%;
     object-fit: cover;
-    /* Ensures the image covers the container without distortion */
-}
-
-/* On larger screens, the image item takes up less space */
-@media (min-width: 768px) {
-    .gallery-item {
-        width: 33.33%;
-        /* Corresponds to Tailwind's md:w-1/3 */
-    }
 }

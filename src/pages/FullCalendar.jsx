@@ -8,7 +8,7 @@ const INTERNSHIP_END = new Date('2026-03-01');
 const API_URL = 'http://localhost:3001';
 
 function CalendarPage() {
-    const [currentDate, setCurrentDate] = useState(INTERNSHIP_START);
+    const [currentDate, setCurrentDate] = useState(new Date());
     const [attendance, setAttendance] = useState({});
     const [specialEvents, setSpecialEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);

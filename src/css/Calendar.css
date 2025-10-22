@@ -69,19 +69,16 @@
     white-space: nowrap;
 }
 
-/* ไฮไลท์วันปัจจุบัน (จากไฟล์เดิมของคุณ) */
-.calendar-day.today {
-    background-color: #f0f9ff;
-    /* สีฟ้าอ่อน */
-    border-color: #0ea5e9;
-}
-
-.calendar-day.today .day-number {
-    color: #0c4a6e;
-}
-
 
 /* --- สีสำหรับสถานะ (เหมือน FullCalendar) --- */
+
+.calendar-day.today.status-present-bg .day-number {
+    background-color: #0ea5e9;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
 
 .calendar-day.status-present-bg {
     background-color: #dcfce7;
@@ -107,56 +104,6 @@
     /* red-800 */
 }
 
-/* --- อัปเดต/เพิ่ม สไตล์เหล่านี้ใน Calendar.css --- */
-
-/* ลบ .calendar-day.today เก่าทิ้ง (ถ้ามี)
-  และลบ .calendar-day.today .day-number เก่าทิ้ง
-*/
-
-/* (ใหม่) สไตล์สำหรับช่องวันปัจจุบัน */
-.calendar-day.today {
-    /* เพิ่ม padding-top เพื่อให้มีที่สำหรับวงกลม */
-    padding-top: 30px;
-
-    /* (ทางเลือก) ยังคงมีขอบสีฟ้าจางๆ ได้ */
-    border-color: #0ea5e9;
-    background-color: #f0f9ff;
-    /* สีฟ้าอ่อน */
-}
-
-/* (ใหม่) สไตล์สำหรับ "ตัวเลข" ของวันปัจจุบัน */
-.calendar-day.today .day-number {
-    /* 1. ทำให้เป็นวงกลม */
-    background-color: #0ea5e9;
-    /* สีฟ้า */
-    color: #ffffff;
-    /* ตัวหนังสือสีขาว */
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-
-    /* 2. จัดตัวเลขให้อยู่กลางวงกลม */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /* 3. จัดตำแหน่งวงกลมให้อยู่กลางบนของช่อง */
-    position: absolute;
-    top: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    /* จัดกึ่งกลางแนวนอน */
-}
-
-/* (ใหม่) ทำให้วงกลมแสดงทับสีเขียว/แดง */
-/* ในกรณีที่วันปัจจุบัน ถูกเช็คชื่อด้วย */
-.calendar-day.status-present-bg.today .day-number,
-.calendar-day.status-absent-bg.today .day-number {
-    background-color: #0284c7;
-    /* สีฟ้าเข้มขึ้น */
-    color: #ffffff;
-}
-
 /* (ปรับปรุง) เพิ่มที่ว่างให้ event tag ไม่ชนวงกลม */
 .event-tag {
     margin-top: 4px;
@@ -173,4 +120,55 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/* --- เพิ่ม CSS เหล่านี้ลงใน Calendar.css --- */
+
+.mini-calendar-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* ทำให้เต็มพื้นที่ที่ HomePage กำหนด */
+}
+
+.mini-calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.mini-current-month {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    /* สีขาวนวล */
+}
+
+.mini-nav-button {
+    background: none;
+    border: 1px solid #475569;
+    /* สีเทาเข้ม */
+    color: #94a3b8;
+    /* สีเทา */
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.mini-nav-button:hover {
+    background-color: #334155;
+    /* สีพื้นหลังเข้มขึ้น */
+}
+
+/* (อัปเดต) ทำให้ Grid กินพื้นที่ที่เหลือ */
+.simple-calendar-grid {
+    flex-grow: 1;
+    /* ทำให้ตารางขยายเต็มพื้นที่ที่เหลือ */
 }

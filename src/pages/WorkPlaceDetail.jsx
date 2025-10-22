@@ -5,13 +5,14 @@ import '../css/WorkPlaceDetail.css';
 function WorkPlaceDetail() {
   return (
     <div className="wpd-container">
-      {/* 3. ปุ่มย้อนกลับไปหน้าหลัก */}
-      <Link to="/" className="wpd-back-link">
-        &larr; กลับไปหน้าหลัก
-      </Link>
-      <Link to="/hierarchy" className="wpd-back-link">
-        &larr; โครงสร้างการบริหาร
-      </Link>
+      <div className="page-top-bar">
+        <Link to="/" className="wpd-back-link">
+          &larr; กลับไปหน้าหลัก
+        </Link>
+        <Link to="/hierarchy" className="wpd-hierarchy-link"> {/* (แนะนำ) เปลี่ยน class เพื่อให้สไตล์ไม่ชนกัน */}
+          โครงสร้างการบริหาร &rarr; {/* (แนะนำ) เปลี่ยนลูกศรเพื่อให้ดูสมเหตุสมผล */}
+        </Link>
+      </div>
       <header className="wpd-header">
         <h1>การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย (EGAT)</h1>
         <p>Electricity Generating Authority of Thailand</p>

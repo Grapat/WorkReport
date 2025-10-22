@@ -16,11 +16,10 @@ function HomePage() {
       <h1 className="homepage-title">Jirapat's Internship Dashboard</h1>
       <main className="main-grid">
         <div className="left-column">
-          <section className="card todolist-card">
-            <h2>Todo List</h2>
+          <section className="card todolist-card card-interactive">
+            <h2>Work log</h2>
             <TodoList />
           </section>
-
           <Link to="/workplace" className="card-link">
             <section className="card workplace-card card-interactive">
               <h2>Work Place Info</h2>
@@ -28,14 +27,14 @@ function HomePage() {
             </section>
           </Link>
         </div>
+        <div className="mid-column">
+          <section className="card calendar-card card-interactive">
+            <h2>Calendar</h2>
+            <Calendar />
+          </section>
+        </div>
         <div className="right-column">
-          <Link to="/calendar" className="card-link">
-            <section className="card calendar-card card-interactive">
-              <h2>Calendar</h2>
-              <Calendar />
-            </section>
-          </Link>
-          <section className="card gallery-card">
+          <section className="card gallery-card card-interactive">
             <h2>Gallery</h2>
             <Gallery />
           </section>
