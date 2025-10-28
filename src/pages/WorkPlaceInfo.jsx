@@ -1,7 +1,7 @@
 import React from 'react';
 
 // 1. Import the new CSS file
-import '../css/WorkPlaceInfo.css';
+import '../css/WorkPlaceStyles.css';
 
 // School data remains inside the component
 const schoolData = {

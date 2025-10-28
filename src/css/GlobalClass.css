@@ -1,0 +1,148 @@
+/* ============================================== */
+/* --- 1. Global Page Layout --- */
+/* (Merged from WorkPlaceStyles & FullGallery) */
+/* ============================================== */
+
+/* --- แถบลิงก์ด้านบนสุดของหน้า --- */
+/* (รวมคุณสมบัติ layout พื้นฐาน) */
+.page-top-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-4, 1rem);
+    /* หมายเหตุ: justify-content (space-between vs flex-start) */
+    /* จะต้องถูกกำหนดใน CSS ของแต่ละหน้าที่ใช้ */
+}
+
+/* --- ส่วนหัวเรื่องของหน้า (Page Header) --- */
+/* (รวมคุณสมบัติ layout พื้นฐาน) */
+.page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-8, 2rem);
+    padding-bottom: var(--spacing-4, 1rem);
+    /* หมายเหตุ: border-bottom และ color จะต้องถูกกำหนด */
+    /* ใน CSS ของแต่ละหน้า (Theme: Light vs Dark) */
+}
+
+.page-header h1 {
+    font-family: var(--font-display, sans-serif);
+    font-size: var(--text-3xl, 2.25rem);
+    font-weight: 700;
+    /* หมายเหตุ: color ถูกกำหนดในไฟล์ของแต่ละหน้า */
+}
+
+.page-header p {
+    font-family: var(--font-primary, sans-serif);
+    font-size: var(--text-lg, 1.125rem);
+    /* หมายเหตุ: color ถูกกำหนดในไฟล์ของแต่ละหน้า */
+}
+
+/* --- ลิงก์ย้อนกลับ (Back Link) --- */
+/* (Merged from Calendar & FullGallery) */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-family: var(--font-primary);
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    /* (ยึดตาม Calendar.css ที่ใช้ตัวแปร) */
+    font-size: var(--text-md);
+    transition: opacity 0.2s;
+}
+
+.back-link:hover {
+    opacity: 0.8;
+    /* (ยึดตาม FullGallery.css) */
+}
+
+
+/* ============================================== */
+/* --- 2. Shared Components --- */
+/* ============================================== */
+
+/* --- Info Component --- */
+/* (Merged from WorkPlaceStyles & HomePage) */
+.info-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    /* หมายเหตุ: height, flex-grow, justify-content */
+    /* เป็น layout context-specific ให้กำหนดในไฟล์เดิม */
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+.info-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: var(--text-md);
+    color: var(--color-text-primary);
+}
+
+/* --- TodoList Component --- */
+/* (Merged from TodoList & HomePage) */
+.todo-list-container {
+    overflow-y: auto;
+    flex-grow: 1;
+    /* หมายเหตุ: display:flex, gap, padding ฯลฯ */
+    /* ถูกกำหนดใน TodoList.css ที่เป็นเวอร์ชันเต็ม */
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    /* หมายเหตุ: padding, gap, background ฯลฯ */
+    /* เป็น context-specific ให้กำหนดในไฟล์เดิม */
+}
+
+.todo-checkbox {
+    accent-color: var(--color-accent);
+    cursor: pointer;
+    /* หมายเหตุ: width, height, margin */
+    /* เป็น context-specific ให้กำหนดในไฟล์เดิม */
+}
+
+/* --- Calendar Grid --- */
+/* (Merged from Calendar & HomePage) */
+.simple-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--spacing-2);
+    text-align: center;
+}
+
+
+/* ============================================== */
+/* --- 3. Utility Classes (New) --- */
+/* ============================================== */
+
+/* --- Custom Scrollbar Utility --- */
+/* (Merged from Gallery.css & TodoList.css) */
+/* เพิ่มคลาสนี้ (.custom-scrollbar) ให้กับ element ที่ต้องการ */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: var(--color-surface);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent);
+    border-radius: var(--radius);
+}
+
+/* For Firefox */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) var(--color-surface);
+}

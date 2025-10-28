@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // 1. Import CSS สำหรับหน้านี้
-import '../css/WorkPlaceHierarchy.css';
+import '../css/WorkPlaceStyles.css';
 
 // --- (สำคัญ) ข้อมูลตัวอย่างโครงสร้างองค์กร ---
 // คุณสามารถแก้ไขข้อมูลตรงนี้ให้เป็นของจริงได้เลย

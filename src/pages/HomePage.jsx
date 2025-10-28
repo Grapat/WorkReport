@@ -37,6 +37,9 @@ function HomePage() {
           <section className="card gallery-card card-interactive">
             <h2>Gallery</h2>
             <Gallery />
+            <Link to="/full-gallery" className="view-all-link">
+              ดูรูปภาพทั้งหมด &rarr;
+            </Link>
           </section>
         </div>
       </main>

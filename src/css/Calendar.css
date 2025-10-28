@@ -1,9 +1,165 @@
+/* === 1. General Page & Wrapper Styles === */
+
+/* --- Styles for FullCalendar Page Container --- */
+.calendar-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-6);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.calendar-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-family: var(--font-primary);
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--text-md);
+}
+
+.add-event-button {
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-event-button:hover {
+    background-color: #0284c7;
+}
+
+.calendar-page-header {
+    margin-bottom: var(--spacing-6);
+}
+
+.calendar-page-header h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+}
+
+.calendar-page-header p {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+}
+
+/* --- Styles for MiniCalendar Wrapper --- */
+.mini-calendar-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* === 2. Calendar Navigation (Common & Specific) === */
+
+/* Common styles for nav container */
+.calendar-nav,
+.mini-calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--spacing-2);
+}
+
+/* Specific margin for FullCalendar nav */
+.calendar-nav {
+    margin-bottom: var(--spacing-4);
+}
+
+/* Specific margin for MiniCalendar nav */
+.mini-calendar-nav {
+    margin-bottom: 0.5rem;
+}
+
+/* Common styles for month display */
+.current-month,
+.mini-current-month {
+    font-family: var(--font-display);
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+.current-month {
+    /* FullCalendar */
+    font-size: var(--text-xl);
+}
+
+.mini-current-month {
+    /* MiniCalendar */
+    font-size: 1rem;
+    color: #f1f5f9;
+    /* สีขาวนวล */
+}
+
+
+/* Common styles for nav buttons */
+.nav-button,
+.mini-nav-button {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+    display: flex;
+    /* For centering content */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Specific styles for FullCalendar buttons */
+.nav-button {
+    padding: var(--spacing-1) var(--spacing-3);
+    font-size: var(--text-lg);
+    font-weight: bold;
+    min-width: 60px;
+}
+
+.nav-button:hover {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    border-color: var(--color-accent);
+}
+
+/* Specific styles for MiniCalendar buttons */
+.mini-nav-button {
+    border-color: #475569;
+    /* สีเทาเข้ม */
+    color: #94a3b8;
+    /* สีเทา */
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+}
+
+.mini-nav-button:hover {
+    background-color: #334155;
+    /* สีพื้นหลังเข้มขึ้น */
+}
+
+/* === 3. Calendar Grid (Common) === */
 .simple-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: var(--spacing-2);
     text-align: center;
     flex-grow: 1;
+    /* Make grid fill available space */
+    /* Ensure rows are equal height (for consistent day cell height) */
     grid-template-rows: auto repeat(6, 1fr);
 }
 
@@ -11,123 +167,275 @@
     font-weight: 500;
     color: var(--color-text-secondary);
     font-size: var(--text-sm);
+    padding-bottom: var(--spacing-2);
 }
 
+/* === 4. Day Cell (Common & Specific) === */
 .calendar-day {
     position: relative;
     padding-top: 24px;
+    /* Space for day number */
     height: 100%;
-    color: #333;
-    cursor: default;
+    /* Make cell fill its grid row */
+    transition: background-color 0.2s ease;
+    border-radius: var(--radius);
     box-sizing: border-box;
+    color: var(--color-text-primary);
+    /* Default text color */
 }
 
-.calendar-day:hover {
-    background-color: var(--color-surface-secondary);
+/* Specific styles for FullCalendar day cells */
+.calendar-page-container .calendar-day {
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    height: 55px;
+    overflow: hidden;
 }
 
+.calendar-page-container .calendar-day:not(.blank):hover {
+    background-color: #666666;
+    /* Consider using a theme variable */
+}
+
+.calendar-page-container .calendar-day.status-present-bg:hover {
+    background-color: #bbf7d0;
+}
+
+.calendar-page-container .calendar-day.status-absent-bg:hover {
+    background-color: #fecaca;
+}
+
+
+/* Specific styles for MiniCalendar day cells */
+.mini-calendar-wrapper .calendar-day {
+    cursor: default;
+    color: #333;
+    min-height: 50px;
+    max-height: 55px;
+    min-width: 55px;
+}
+
+.mini-calendar-wrapper .calendar-day:not(.blank):hover {
+    background-color: #4b5563;
+}
+
+.mini-calendar-wrapper .calendar-day.status-present-bg:hover {
+    background-color: #bbf7d0;
+    /* สีเขียวอ่อนลง */
+}
+
+.mini-calendar-wrapper .calendar-day.status-absent-bg:hover {
+    background-color: #fecaca;
+    /* สีแดงอ่อนลง */
+}
+
+/* Common blank day style */
 .calendar-day.blank {
     background-color: transparent;
     border: none;
+    cursor: default;
+    min-height: 0;
+    max-height: none;
 }
 
+/* Common day number style */
 .day-number {
     position: absolute;
     top: 4px;
     left: 4px;
     font-size: 0.8em;
+    /* Default small size */
     font-weight: bold;
 }
 
-.event-tag {
-    /* --- 3 บรรทัดสำคัญสำหรับตัดข้อความ --- */
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: block;
-    width: 90%;
-    margin: 4px auto 0 auto;
-    padding: 4px;
-    border-radius: 4px;
-    background-color: #0ea5e9;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 0.7em;
-    text-align: center;
+/* Specific larger day number for FullCalendar */
+.calendar-page-container .day-number {
+    font-size: 1.2em;
+    color: var(--color-text-primary);
 }
 
-/* --- สีสำหรับสถานะ (เหมือน FullCalendar) --- */
-
-.calendar-day.today.status-present-bg .day-number {
+/* Specific styling for Today's number in MiniCalendar */
+.mini-calendar-wrapper .calendar-day.today .day-number {
     background-color: #0ea5e9;
     color: #ffffff;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+/* Ensure today's number stays white even with status bg in MiniCalendar*/
+.mini-calendar-wrapper .calendar-day.status-present-bg.today .day-number,
+.mini-calendar-wrapper .calendar-day.status-absent-bg.today .day-number {
+    color: #ffffff;
+}
+
+
+/* === 5. Status Colors (Common) === */
 .calendar-day.status-present-bg {
     background-color: #dcfce7;
-    /* green-100 */
     border-color: #22c55e;
-    /* green-500 */
+    /* Only visible on FullCalendar */
 }
 
 .calendar-day.status-present-bg .day-number {
     color: #166534;
-    /* green-800 */
+    /* Dark green number */
 }
 
 .calendar-day.status-absent-bg {
     background-color: #fee2e2;
-    /* red-100 */
     border-color: #ef4444;
-    /* red-500 */
+    /* Only visible on FullCalendar */
 }
 
 .calendar-day.status-absent-bg .day-number {
     color: #991b1b;
-    /* red-800 */
+    /* Dark red number */
 }
 
-.mini-calendar-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.mini-calendar-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.mini-current-month {
-    font-size: 1rem;
+/* === 6. Event Tag (Common & Specific) === */
+.event-tag {
+    text-align: center;
+    padding: 4px;
+    /* More padding */
+    border-radius: 4px;
+    background-color: #0ea5e9;
+    color: #ffffff;
     font-weight: 600;
-    color: #f1f5f9;
-    /* สีขาวนวล */
+    display: block;
+    margin: 4px auto 0 auto;
+    /* Center horizontally */
+    box-sizing: border-box;
+    width: 90%;
+    /* Fixed width */
+
+    /* Text Truncation */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.mini-nav-button {
-    background: none;
-    border: 1px solid #475569;
-    /* สีเทาเข้ม */
-    color: #94a3b8;
-    /* สีเทา */
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
+/* Specific smaller font for MiniCalendar */
+.mini-calendar-wrapper .event-tag {
+    font-size: 0.7em;
+}
+
+/* Specific larger font for FullCalendar */
+.calendar-page-container .event-tag {
+    font-size: 0.75em;
+    margin: 4px;
+    /* Use simpler margin */
+}
+
+/* Make FullCalendar event tag clickable */
+.calendar-page-container .event-tag.clickable {
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.calendar-page-container .event-tag.clickable:hover {
+    background-color: #0284c7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* === 7. Event Form Modal (Only used by FullCalendar) === */
+.event-form-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1000;
+}
+
+.event-form-modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 400px;
+    color: #333;
+}
+
+.event-form-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #111;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.form-buttons button {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-.mini-nav-button:hover {
-    background-color: #334155;
-    /* สีพื้นหลังเข้มขึ้น */
+.btn-cancel {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.btn-cancel:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-save {
+    background-color: #0ea5e9;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #0284c7;
+}
+
+.btn-delete {
+    background-color: #ef4444;
+    color: white;
+    margin-right: auto;
+    /* Push delete button to the left */
+}
+
+.btn-delete:hover {
+    background-color: #dc2626;
 }

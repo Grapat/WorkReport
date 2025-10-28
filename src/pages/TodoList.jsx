@@ -77,7 +77,7 @@ function TodoList() {
             </div>
 
             {/* 8. (ใหม่) ปุ่มสำหรับลิงก์ไปหน้า WorkLog */}
-            <Link to="/worklog" className="view-all-link">
+            <Link to="/full-gallery" className="view-all-link">
                 ดูบันทึกการปฏิบัติงานทั้งหมด &rarr;
             </Link>
         </div>
