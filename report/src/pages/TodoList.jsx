@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'; // 1. Import Link
 import '../css/TodoList.css';
 
 // 2. (ใหม่) URL ของ API
-const API_URL = 'http://localhost:3001';
 
 function TodoList() {
     // 3. (อัปเดต) เริ่มต้นด้วย Array ว่าง
@@ -14,7 +13,7 @@ function TodoList() {
     useEffect(() => {
         const fetchTodos = async () => {
             try {
-                const response = await fetch(`${API_URL}/api/data`);
+                const response = await fetch(`/api/data`);
                 const data = await response.json();
                 setTodos(data.todos || []);
             } catch (error) {
@@ -38,7 +37,7 @@ function TodoList() {
 
         // 2. ส่ง Array ใหม่ทั้งชุดไปบันทึกที่เซิร์ฟเวอร์
         try {
-            await fetch(`${API_URL}/api/todos`, {
+            await fetch(`/api/todos`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedTodos),

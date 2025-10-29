@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../css/Calendar.css';
 
 // URL ของ API เซิร์ฟเวอร์ (ตัวเดียวกับที่ FullCalendar.jsx ใช้)
-const API_URL = 'http://localhost:3001';
 // (ใหม่) กำหนดช่วงเวลา (เหมือน FullCalendar)
 const INTERNSHIP_START = new Date('2025-05-01');
 const INTERNSHIP_END = new Date('2026-03-01');
@@ -53,7 +52,7 @@ function Calendar() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${API_URL}/api/data`);
+                const response = await fetch(`/api/data`);
                 const data = await response.json();
                 setAttendance(data.attendance || {});
                 setSpecialEvents(data.specialEvents || []);

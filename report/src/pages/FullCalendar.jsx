@@ -24,7 +24,7 @@ function CalendarPage() {
     useEffect(() => {
         const fetchData = async () => { /* ... โค้ด fetch เดิม ... */
             try {
-                const response = await fetch(`${API_URL}/api/data`);
+                const response = await fetch(`/api/data`);
                 const data = await response.json();
                 setAttendance(data.attendance || {});
                 setSpecialEvents(data.specialEvents || []);
@@ -60,7 +60,7 @@ function CalendarPage() {
         const newAttendance = { ...attendance, [dateString]: nextStatus };
         setAttendance(newAttendance);
         try {
-            await fetch(`${API_URL}/api/attendance`, {
+            await fetch(`/api/attendance`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newAttendance),
@@ -115,7 +115,7 @@ function CalendarPage() {
 
             if (editingEvent) {
                 // --- โหมดแก้ไข (PUT) ---
-                response = await fetch(`${API_URL}/api/events/${editingEvent.date}`, { // ใช้ date เดิมเป็น key
+                response = await fetch(`/api/events/${editingEvent.date}`, { // ใช้ date เดิมเป็น key
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(eventData), // ส่งข้อมูลใหม่ไป
@@ -130,7 +130,7 @@ function CalendarPage() {
 
             } else {
                 // --- โหมดเพิ่มใหม่ (POST) ---
-                response = await fetch(`${API_URL}/api/events`, {
+                response = await fetch(`/api/events`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(eventData),
@@ -162,7 +162,7 @@ function CalendarPage() {
         }
 
         try {
-            const response = await fetch(`${API_URL}/api/events/${editingEvent.date}`, {
+            const response = await fetch(`/api/events/${editingEvent.date}`, {
                 method: 'DELETE',
             });
 
