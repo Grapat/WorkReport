@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // 👈 อ่านค่าจาก .env
+}
+
+// === กำหนด Model ตาม db.json ===
+
+// ตารางสำหรับเก็บ Attendance
+// ใช้ 'date' เป็น Primary Key
+model Attendance {
+  date   String @id // ใช้ String เพราะข้อมูลเดิมเป็น YYYY-MM-DD
+  status String
+}
+
+// ตารางสำหรับเก็บ Special Events
+// ใช้ 'date' เป็น Primary Key (ถ้ามั่นใจว่าไม่ซ้ำ) หรือเพิ่ม id อัตโนมัติ
+model SpecialEvent {
+  // id    Int    @id @default(autoincrement()) // <-- หรือจะใช้ id แบบนี้ก็ได้
+  date  String @id // ถ้าใช้ date เป็น key หลัก ต้องมั่นใจว่าไม่ซ้ำ
+  title String
+}
+
+// ตารางสำหรับเก็บ Todos
+// ใช้ id ที่เป็นตัวเลขเพิ่มอัตโนมัติเป็น Primary Key
+model Todo {
+  id        Int     @id @default(autoincrement())
+  text      String
+  completed Boolean @default(false)
+}

@@ -7,3 +7,5 @@ report/.env
 report/.env.local
 node_modules
 /generated/prisma
+
+/generated/prisma
