@@ -1,4 +1,7 @@
 server/node_modules
 server/.env
+server/.env.local
 report/node_modules
 report/dist
+report/.env
+report/.env.local
