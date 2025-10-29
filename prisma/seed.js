@@ -1,9 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 import fs from 'fs/promises';
+// ✅ Import necessary modules
+import { fileURLToPath } from 'url';
 import path from 'path';
 
 const prisma = new PrismaClient();
-const DB_JSON_PATH = path.resolve(__dirname, '../server/db.json'); // หา db.json ใน server
+
+// ✅ Calculate __dirname using ES Module methods
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DB_JSON_PATH = path.resolve(__dirname, '../server/db.json'); // Find db.json in server
 
 async function main() {
   console.log(`Reading data from ${DB_JSON_PATH}...`);
