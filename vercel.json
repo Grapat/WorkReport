@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "api/handler.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "report/package.json",
+            "use": "@vercel/vite",
+            "config": {
+                "outputDirectory": "dist"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "/api/handler.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/report/$1"
+        }
+    ]
+}
